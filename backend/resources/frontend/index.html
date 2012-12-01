@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>OPM: Pump status</title>
+    <link href="default.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script>
+      function initialize() {
+        var mapOptions = {
+          zoom: 6,
+          center: new google.maps.LatLng(0.834931, 37.547607),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById('map_canvas'),
+            mapOptions);
+        var images = {"good" : "/frontend/img/marker.png",
+                      "bad" : "/frontend/img/marker-red.png",
+                      "inactive" : "/frontend/img/marker-yellow.png"}
+        $.getJSON('/fakeapi/location.json',function(results) {
+          for (var i = 0; i < results.length; i++) {
+            var latLng = new google.maps.LatLng(results[i].longitude, results[i].latitude);
+            var marker = new google.maps.Marker({
+              position: latLng,
+              map: map,
+              icon: images[results[i].status]
+            });
+            attachStatus(marker, results[i].description + " " + results[i].status)
+          }
+        })
+
+      }
+      function attachStatus(marker, status) {
+          var infowindow = new google.maps.InfoWindow({
+            content: status
+          });
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(marker.get('map'), marker);
+          });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map_canvas"></div>
+  </body>
+</html>
