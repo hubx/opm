@@ -35,7 +35,10 @@ body {padding-top: 60px;padding-bottom: 40px;}
               map: map,
               icon: images[results[i].status]
             });
-            attachStatus(marker, results[i].description + "\n" + "Last status: " + results[i].status)
+            if (results[i].description == "")
+            	results[i].description = "Pump " + results[i].id;
+            var status = "<b>" + results[i].description + "</b>" + "<br />" + "Last status: " + results[i].status;
+            attachStatus(marker, status)
           }
         })
 
