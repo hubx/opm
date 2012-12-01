@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>OPM: Pump status</title>
-    <link href="default.css" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-    <script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<title>Open Pump Monitor: Pump Status Monitor</title>
+<meta content="some description" name="description">
+<meta content="some keywords" name="keywords">
+<meta content="RHoK PTA" name="author">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+body {padding-top: 60px;padding-bottom: 40px;}
+.sidebar-nav {padding: 9px 0;}
+</style>
+<link href="/images/favicon.ico" rel="shortcut icon">
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>
       function initialize() {
         var mapOptions = {
           zoom: 6,
@@ -43,8 +50,31 @@
       }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-  </head>
-  <body>
-    <div id="map_canvas"></div>
-  </body>
-</html>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li><a href="/frontend/index.html"><b>Map</b></a></li>
+						<li><a href="/frontend/index.html">List</a></li>
+						<li><a href="/frontend/about.html">Documentation</a></li>
+					</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+    	<div id="map_canvas" style="width:100%; height:600px"></div>
+			<footer>
+				<hr>
+				<p>&copy; Rheo Systems 2012</p>
+			</footer>
+		</div>
+		<script src="/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+		<script src="/js/bootstrap-carousel.js" type="text/javascript"></script>
+		<script src="/js/bootstrap-modal.js" type="text/javascript"></script>
+		<script src="/js/bootstrap-alert.js" type="text/javascript"></script>
+	</body>
+	</html>
