@@ -16,9 +16,9 @@
                      [ring/ring-servlet "1.1.0"]
                      [lein-beanstalk "0.2.2"]]
   :resources-path "resources"
-  :ring {:handler track.core/routes
-         :destroy track.database/destroy-connection-pool
-         :servlet-name track
+  :ring {:handler opm.core/routes
+         :destroy opm.database/destroy-connection-pool
+         :servlet-name opm
          :url-pattern "/*"
          ;; If true, a :path-info key is added to the request map.
          :servlet-path-info? true})
