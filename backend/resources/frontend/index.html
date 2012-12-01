@@ -17,9 +17,9 @@
 
         var map = new google.maps.Map(document.getElementById('map_canvas'),
             mapOptions);
-        var images = {"good" : "/frontend/img/marker.png",
-                      "bad" : "/frontend/img/marker-red.png",
-                      "inactive" : "/frontend/img/marker-yellow.png"}
+        var images = {"good" : new google.maps.MarkerImage("/frontend/img/marker-green.png"),
+                      "bad" : new google.maps.MarkerImage("/frontend/img/marker-red.png"),
+                      "inactive" : new google.maps.MarkerImage("/frontend/img/marker-grey.png")}
         $.getJSON('/fakeapi/location.json',function(results) {
           for (var i = 0; i < results.length; i++) {
             var latLng = new google.maps.LatLng(results[i].longitude, results[i].latitude);
