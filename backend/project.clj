@@ -15,6 +15,7 @@
                      [ring/ring-devel "1.1.0"]
                      [ring/ring-servlet "1.1.0"]
                      [lein-beanstalk "0.2.2"]]
+  :plugins [[lein-ring "0.7.5"]]
   :resources-path "resources"
   :ring {:handler track.core/routes
          :destroy track.database/destroy-connection-pool
