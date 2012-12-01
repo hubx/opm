@@ -1,4 +1,4 @@
-{
+[
   {"id": "1",
     "description": "Mombasa Pump",
     "longitude": "-4.061536, ",
@@ -17,14 +17,12 @@
     "latitude" :"37.78954731948238",
     "status" : "inactive"
   },
-
   {"id": "4",
     "description": "",
     "longitude": "3.0918552216825392",
     "latitude" :"37.40176055539564",
     "status" : "good"
   },
-
   {"id": "5",
     "description": "",
     "longitude": "2.6651373641099014",
@@ -36,6 +34,6 @@
     "longitude": "-2.325921557837359",
     "latitude" :"37.19635105784653 ",
     "status" : "inactive"
-  },
-}
+  }
+]
 
