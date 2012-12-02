@@ -14,6 +14,7 @@ body {padding-top: 60px;padding-bottom: 40px;}
 <link href="/images/favicon.ico" rel="shortcut icon">
 <script src="https://www.google.com/jsapi" type="text/javascript"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script>
       function initialize() {
         var mapOptions = {
@@ -24,7 +25,9 @@ body {padding-top: 60px;padding-bottom: 40px;}
 
         var map = new google.maps.Map(document.getElementById('map_canvas'),
             mapOptions);
-        var images = {"good" : new google.maps.MarkerImage("/frontend/img/marker-green.png"),
+
+        markers = {}
+        images = {"good" : new google.maps.MarkerImage("/frontend/img/marker-green.png"),
                       "bad" : new google.maps.MarkerImage("/frontend/img/marker-red.png"),
                       "inactive" : new google.maps.MarkerImage("/frontend/img/marker-grey.png")}
         $.getJSON('/fakeapi/location.json',function(results) {
@@ -38,25 +41,35 @@ body {padding-top: 60px;padding-bottom: 40px;}
             if (results[i].description == "")
             	results[i].description = "Pump " + results[i].id;
             var status = "<b>" + results[i].description + "</b>" + "<br />" + "Last status: " + results[i].status;
-            attachStatus(marker, status)
+            attachStatus(marker, status, results[i].id)
           }
         })
 
       }
-      function attachStatus(marker, status) {
+      function attachStatus(marker, status, id) {
           var infowindow = new google.maps.InfoWindow({
             content: status
           });
+
           google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(marker.get('map'), marker);
           });
+          markers[id] = marker;
       }
       google.maps.event.addDomListener(window, 'load', initialize);
+      $(document).ready(function() {
+      $('#target').click(function () {
+        console.log(markers[5]);
+        markers[5].setAnimation(google.maps.Animation.BOUNCE);
+        markers[5].setIcon(images['bad']);
+        window.setTimeout("markers[5].setAnimation(null)", 3000);
+      } );
+    })
     </script>
 </head>
 <body>
 	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
+		<div class="navbar-inner" id="target">
 			<div class="container">
 				<div class="nav-collapse">
 					<ul class="nav">
@@ -75,7 +88,6 @@ body {padding-top: 60px;padding-bottom: 40px;}
 				<p>&copy; Rheo Systems 2012</p>
 			</footer>
 		</div>
-		<script src="/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 		<script src="/js/bootstrap-carousel.js" type="text/javascript"></script>
 		<script src="/js/bootstrap-modal.js" type="text/javascript"></script>
 		<script src="/js/bootstrap-alert.js" type="text/javascript"></script>

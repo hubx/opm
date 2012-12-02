@@ -40,13 +40,20 @@ $(document).ready(function() {
             if(results[i].status != "")
             	results[i]["DT_RowClass"] ="status"+ capitaliseFirstLetter(results[i]["status"]);
           }
-    console.log(results)
     $('#example').dataTable(
     	{"aaData" : results,
     	"aoColumns" : title,
     	"bProcessing": true,
     })
-	} )
+    $('#example tbody tr').click(function () {
+    	var tr = this;
+        var nTds = $('td', this);
+        var sID = $(nTds[0]).text();
+        if ( sID == "5" )
+            $(nTds[4]).text("bad")
+        	$(tr).removeClass("statusGood").addClass("statusBad");
+    } );
+	})
 });
     </script>
 </head>

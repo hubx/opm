@@ -233,7 +233,7 @@ table.display tr.odd.statusBad {
 }
 
 table.display tr.even.statusBad {
-	background-color: #ffeeee;
+	background-color: #ffdddd;
 }
 
 table.display tr.odd.gradeU {
